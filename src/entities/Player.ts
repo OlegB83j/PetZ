@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 
 export class Player {
   public sprite: Phaser.Physics.Arcade.Sprite;
-  public health: number = 100;
-  public maxHealth: number = 100;
+  public health: number = 9999;
+  public maxHealth: number = 99991;
 
   private speed: number = 150;
   private scene: Phaser.Scene;
