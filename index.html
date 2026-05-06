@@ -18,14 +18,53 @@
         min-height: 100vh;
         overflow: hidden;
       }
-      #game-container {
+      .game-wrapper {
+        position: relative;
         border: 2px solid #333;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+      #game-container {
+        line-height: 0;
+      }
+      .top-right-ui {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+      }
+      .game-input {
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid #555;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      .game-input:focus {
+        border-color: #4caf50;
       }
     </style>
   </head>
   <body>
-    <div id="game-container"></div>
+    <div class="game-wrapper">
+      <div id="game-container"></div>
+      <div class="top-right-ui">
+        <input type="text" placeholder="Enter name..." class="game-input" />
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      const gameInput = document.querySelector('.game-input');
+      if (gameInput) {
+        // Prevent game from receiving keyboard events when typing
+        const stopProp = (e) => e.stopPropagation();
+        gameInput.addEventListener('keydown', stopProp);
+        gameInput.addEventListener('keyup', stopProp);
+        gameInput.addEventListener('keypress', stopProp);
+      }
+    </script>
   </body>
 </html>
